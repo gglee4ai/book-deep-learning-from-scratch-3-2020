@@ -27,5 +27,5 @@ class MLP(Model):
     def forward(self, x):
         for l in self.layers[:-1]:
             x = self.activation(l(x))
-            return self.layer[-1](x)
+            return self.layers[-1](x)
 
