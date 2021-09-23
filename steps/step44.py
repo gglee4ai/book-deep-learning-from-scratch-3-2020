@@ -37,3 +37,4 @@ for i in range(iters):
 
     if i % 1000 == 0:
         print(loss)
+
