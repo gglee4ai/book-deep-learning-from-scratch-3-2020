@@ -189,7 +189,7 @@ def mean_squared_error(x0, x1):
     return MeanSquaredError()(x0 ,x1)
 
 
-def linear_simple(x, W, b=None):
+def linear(x, W, b=None):
     t = matmul(x, W)
     if b is None:
         return t
@@ -198,7 +198,7 @@ def linear_simple(x, W, b=None):
     return y
 
 
-def sigmoid_simple(x):
+def sigmoid(x):
     x = as_variable(x)
     y = 1 / (1 + exp(-x))
     return y
