@@ -3,9 +3,10 @@ if '__file__' in globals():
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import numpy as np
-from dezero.core import Function
-from dezero.core import as_variable
+from dezero.core import Function, Variable
+from dezero.core import as_variable, as_array
 from dezero import utils
+
 
 class Sin(Function):
     def forward(self, x):
@@ -261,3 +262,12 @@ def softmax_cross_entropy_simple(x, t):
     tlog_p = log_p[np.arrange(N), t.data]
     y = -1 * sum(tlog_p) / N
     return y
+
+def accuracy(y, t):
+    y, t = as_variable(y), as_variable(t)
+
+    pred = y.data.argmax(axis=1).reshape(t.shape)
+    result = (pred == t.data)
+    acc = result.mean()
+    return Variable(as_array(acc))
+
